@@ -126,6 +126,8 @@ hold objects that implement the `Shape` interface.
 
 ## Defining a `Shape` interface - Code Along
 
+![interface uml](https://curriculum-content.s3.amazonaws.com/6677/pillars/interface_uml.png)
+
 We will define an interface named `Shape`
 that defines two abstract methods `getArea()` and `getCircumference()`.
 An **abstract**  method is a method with no
@@ -155,11 +157,10 @@ public interface Shape {
 }
 ```
 
-- Update `Rectangle` and `Circle` to declare they implement the `Shape` interface.
-- Add the `@Override` annotation to the `getArea()` and `getCircumference()` methods.
 
-While the `@Override` annotation is optional, it is best practice to use it to force
-the compiler to check the method signatures match the abstract methods in the interface.
+Update `Rectangle` and `Circle` to declare they implement the `Shape` interface.
+Add the `@Override` annotation to the `getArea()` and `getCircumference()` methods.
+
 
 ```java
 public class Rectangle implements Shape {
@@ -194,6 +195,10 @@ public class Circle implements Shape {
 
 }
 ```
+
+While the `@Override` annotation is optional, it is best practice to use it to force
+the compiler to check the method signatures match the abstract methods in the interface.
+
 
 Now we can evolve the `main` method to use the `Shape` interface
 as the declared type for the array.  We can add to the array
