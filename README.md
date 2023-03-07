@@ -137,7 +137,7 @@ An interface is similar to a class. However, a class defines the attributes and
 behaviors of its instances, while an interface describes behaviors
 that will be implemented by one or more classes.
 
-- An interface is never instantiated and do not have constructors.
+- An interface is never instantiated and does not have constructors.
 - An interface may define one or more abstract methods.
   - A method declared without a method body within an interface is implicitly public and abstract.
 - An interface may define constants.
