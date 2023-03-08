@@ -7,13 +7,13 @@ public class Main {
         };
 
         double totalArea = 0;
-        double totalCircumference = 0;
+        double totalPerimeter = 0;
         for (Rectangle table: tables) {
             totalArea += table.getArea();
-            totalCircumference += table.getCircumference();
+            totalPerimeter += table.getPerimeter();
         }
 
         System.out.println("Total area = " + totalArea);
-        System.out.println("Total circumference = " + totalCircumference);
+        System.out.println("Total perimeter = " + totalPerimeter);
     }
 }

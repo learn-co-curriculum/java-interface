@@ -11,7 +11,7 @@
 An **Interface** in Java is defined as an abstract type
 used to specify the behavior of a class.
 Interfaces are used to achieve abstraction, specifying
-what a class must do and not how. 
+what a class must do and not how.
 
 ## Code-Along
 
@@ -24,9 +24,9 @@ and adapt the classes to implement the interface.
 Let's look at an example application that demonstrates why interfaces are useful.
 Assume we own a restaurant with several rectangular tables, and we
 need to repaint the table tops.  We need to figure out the total
-area and circumference to determine how much paint to buy.
+area and perimeter to determine how much paint to buy.
 
-The `Rectangle` class has methods to calculate area and circumference:
+The `Rectangle` class has methods to calculate area and perimeter:
 
 ```java
 public class Rectangle {
@@ -38,7 +38,7 @@ public class Rectangle {
     }
 
     public double getArea() { return height * width; }
-    public double getCircumference () { return 2 * (height + width); }
+    public double getPerimeter () { return 2 * (height + width); }
     
 }
 ```
@@ -46,7 +46,7 @@ public class Rectangle {
 The driver class `Main` has a  `main` method to
 store an array of `Rectangle` objects representing the table tops.
 It is easy to loop through the array and accumulate the total area
-and circumference of the rectangles.
+and perimeter of the rectangles.
 
 ```java
 public class Main {
@@ -58,14 +58,14 @@ public class Main {
         };
 
         double totalArea = 0;
-        double totalCircumference = 0;
+        double totalPerimeter = 0;
         for (Rectangle table: tables) {
             totalArea += table.getArea();
-            totalCircumference += table.getCircumference();
+            totalPerimeter += table.getPerimeter();
         }
 
         System.out.println("Total area = " + totalArea);
-        System.out.println("Total circumference = " + totalCircumference);
+        System.out.println("Total perimeter = " + totalPerimeter);
     }
 }
 
@@ -75,12 +75,12 @@ The program prints the totals:
 
 ```text
 Total area = 58.0
-Total circumference = 52.0
+Total perimeter = 52.0
 ```
 
 But what if we decide to purchase two additional tables that are round rather than
 rectangular?    The `Circle` class has methods to calculate
-the area and circumference:
+the area and perimeter:
 
 ```java
 public class Circle {
@@ -88,23 +88,23 @@ public class Circle {
 
     public Circle(double radius) {this.radius = radius;}
     public double getArea() { return Math.PI * radius * radius; }
-    public double getCircumference () { return 2 * Math.PI * radius; }
+    public double getPerimeter() { return 2 * Math.PI * radius; }
 
 }
 ```
 
-Consider the loop in the `main` method, where we call `getArea()` and `getCircumference()`
+Consider the loop in the `main` method, where we call `getArea()` and `getPerimeter()`
 on each element in the array:
 
 ```java
 for (Rectangle table: tables) {
     totalArea += table.getArea();
-    totalCircumference += table.getCircumference();
+    totalPerimeter += table.getPerimeter();
 }
 ```
 
 `Circle` objects know how to calculate
-area and circumference.  It would be handy if we could store
+area and perimeter.  It would be handy if we could store
 `Rectangle` and `Circle` objects in the same array.  
 However, our array expects `Rectangle` class instances, so we can't add `Circle`
 objects into the array.  This code won't compile:
@@ -122,14 +122,14 @@ Rectangle[]tables=new Rectangle[]{
 
 The solution is to
 create an **interface** named `Shape`, and change the array declaration to
-hold objects that implement the `Shape` interface. 
+hold objects that implement the `Shape` interface.
 
 ## Defining a `Shape` interface - Code Along
 
-![interface uml](https://curriculum-content.s3.amazonaws.com/6677/pillars/interface_uml.png)
+![shape uml](https://curriculum-content.s3.amazonaws.com/6677/pillars/shape_uml.png)
 
-We will define an interface named `Shape`
-that defines two abstract methods `getArea()` and `getCircumference()`.
+We will create an interface named `Shape`
+that defines two abstract methods `getArea()` and `getPerimeter()`.
 An **abstract**  method is a method with no
 implementation (i.e. no curly braces enclosing a method body).
 
@@ -147,19 +147,19 @@ that will be implemented by one or more classes.
   declared in the interface, or the class must also be declared as abstract.
 
 Create a new interface named `Shape` with abstract methods `getArea()`
-and `getCircumference()` as shown below.  Both methods are abstract (no method body)
+and `getPerimeter()` as shown below.  Both methods are abstract (no method body)
 and public  by default.
 
 ```java
 public interface Shape {
     double getArea();
-    double getCircumference();
+    double getPerimeter();
 }
 ```
 
 
 Update `Rectangle` and `Circle` to declare they implement the `Shape` interface.
-Add the `@Override` annotation to the `getArea()` and `getCircumference()` methods.
+Add the `@Override` annotation to the `getArea()` and `getPerimeter()` methods.
 
 
 ```java
@@ -175,7 +175,7 @@ public class Rectangle implements Shape {
     public double getArea() { return height * width; }
 
     @Override
-    public double getCircumference () { return 2 * (height + width); }
+    public double getPerimeter() { return 2 * (height + width); }
 
 }
 
@@ -191,7 +191,7 @@ public class Circle implements Shape {
   public double getArea() { return Math.PI * radius * radius; }
 
   @Override
-  public double getCircumference () { return 2 * Math.PI * radius; }
+  public double getPerimeter() { return 2 * Math.PI * radius; }
 
 }
 ```
@@ -202,7 +202,7 @@ the compiler to check the method signatures match the abstract methods in the in
 
 Now we can evolve the `main` method to use the `Shape` interface
 as the declared type for the array.  We can add to the array
- `Rectangle` and `Circle` objects since both classes implement
+`Rectangle` and `Circle` objects since both classes implement
 the `Shape` interface.
 
 ```java
@@ -220,7 +220,7 @@ We also need to change the declared type of the loop variable to `Shape`:
 ```java
 for (Shape table: tables) {
     totalArea += table.getArea();
-    totalCircumference += table.getCircumference();
+    totalPerimeter += table.getPerimeter();
 }
 ```
 
@@ -238,24 +238,24 @@ public class Main {
         };
 
         double totalArea = 0;
-        double totalCircumference = 0;
+        double totalPerimeter = 0;
         for (Shape table: tables) {
             totalArea += table.getArea();
-            totalCircumference += table.getCircumference();
+            totalPerimeter += table.getPerimeter();
         }
 
         System.out.println("Total area = " + totalArea);
-        System.out.println("Total circumference = " + totalCircumference);
+        System.out.println("Total perimeter = " + totalPerimeter);
     }
 }
 ```
 
-The program now includes the area and circumference of the
+The program now includes the area and perimeter of the
 two `Circle` objects in calculating the totals:
 
 ```text
 Total area = 221.36281798666926
-Total circumference = 114.83185307179586
+Total perimeter = 114.83185307179586
 ```
 
 ## Debugging the application
@@ -281,7 +281,7 @@ defined in the `Rectangle` class is called.
 Press "Step Into" to calculate and return the area to the `main` method.
 
 Keep pressing "Step Into" to loop through the rest of the elements in the array, calling `getArea()` and
-`getCircumference()` on each shape.  Confirm when the shape is a `Circle` object,
+`getPerimeter()` on each shape.  Confirm when the shape is a `Circle` object,
 the `getArea()` in `Circle` is executed:
 
 ![loop step 3](https://curriculum-content.s3.amazonaws.com/6677/pillars/interface_step3.png)
@@ -300,10 +300,10 @@ Polymorphism means "many forms".
   This is also referred to as **dynamic binding** since it happens a runtime, rather than **static binding**
   that happens at compile-time.
 
-Even though the array's declared type is `Shape`,  the actual `getArea()` or `getCircumference()`
+Even though the array's declared type is `Shape`,  the actual `getArea()` or `getPerimeter()`
 method that executes each time through the loop depends on the object referenced by the polymorphic variable `table`.
 The `Rectangle` methods are called when `table` references a `Rectangle` object,
-and the `Circle` methods get called when the `table` references a `Circle` object.  
+and the `Circle` methods get called when the `table` references a `Circle` object.
 
 We'll explore polymorphism and dynamic binding more in the next lesson.
 
@@ -320,4 +320,4 @@ executed method is determined by the type of the referenced object.
 
 ## Resources
 
-- [Java Tutorial - Interface](https://docs.oracle.com/javase/tutorial/java/concepts/interface.html)
+[Java Tutorial - Interface](https://docs.oracle.com/javase/tutorial/java/concepts/interface.html)
