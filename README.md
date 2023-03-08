@@ -11,7 +11,7 @@
 An **Interface** in Java is defined as an abstract type
 used to specify the behavior of a class.
 Interfaces are used to achieve abstraction, specifying
-what a class must do and not how.
+what a class must do and not how. 
 
 ## Code-Along
 
@@ -122,7 +122,7 @@ Rectangle[]tables=new Rectangle[]{
 
 The solution is to
 create an **interface** named `Shape`, and change the array declaration to
-hold objects that implement the `Shape` interface.
+hold objects that implement the `Shape` interface. 
 
 ## Defining a `Shape` interface - Code Along
 
@@ -198,11 +198,12 @@ public class Circle implements Shape {
 
 While the `@Override` annotation is optional, it is best practice to use it to force
 the compiler to check the method signatures match the abstract methods in the interface.
-
+The `@Override` annotation will provide context to the methods we defined in the Shape interface.
+We'll learn more about overriding and how that works in the coming lessons.
 
 Now we can evolve the `main` method to use the `Shape` interface
 as the declared type for the array.  We can add to the array
-`Rectangle` and `Circle` objects since both classes implement
+ `Rectangle` and `Circle` objects since both classes implement
 the `Shape` interface.
 
 ```java
@@ -288,7 +289,7 @@ the `getArea()` in `Circle` is executed:
 
 ## Polymorphism
 
-Polymorphism means "many forms".
+What we just saw above is an example of polymorphism. Polymorphism means "many forms".
 
 - A **polymorphic variable** is one that can hold values of different types.
   The array variable `tables` and the loop variable `table` are both polymorphic
@@ -303,7 +304,7 @@ Polymorphism means "many forms".
 Even though the array's declared type is `Shape`,  the actual `getArea()` or `getPerimeter()`
 method that executes each time through the loop depends on the object referenced by the polymorphic variable `table`.
 The `Rectangle` methods are called when `table` references a `Rectangle` object,
-and the `Circle` methods get called when the `table` references a `Circle` object.
+and the `Circle` methods get called when the `table` references a `Circle` object.  
 
 We'll explore polymorphism and dynamic binding more in the next lesson.
 
