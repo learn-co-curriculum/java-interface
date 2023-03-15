@@ -80,7 +80,7 @@ Total perimeter = 52.0
 
 But what if we decide to purchase two additional tables that are round rather than
 rectangular?    The `Circle` class has methods to calculate
-the area and perimeter:
+the area and perimeter (i.e. circumference):
 
 ```java
 public class Circle {
@@ -132,6 +132,7 @@ We will create an interface named `Shape`
 that defines two abstract methods `getArea()` and `getPerimeter()`.
 An **abstract**  method is a method with no
 implementation (i.e. no curly braces enclosing a method body).
+An abstract method is displayed with italic font in a UML diagram.
 
 An interface is similar to a class. However, a class defines the attributes and
 behaviors of its instances, while an interface describes behaviors
@@ -145,6 +146,7 @@ that will be implemented by one or more classes.
 - A class that declares it **implements** an interface must provide
   an implementation (i.e. a method body) for every abstract method
   declared in the interface, or the class must also be declared as abstract.
+
 
 Create a new interface named `Shape` with abstract methods `getArea()`
 and `getPerimeter()` as shown below.  Both methods are abstract (no method body)
